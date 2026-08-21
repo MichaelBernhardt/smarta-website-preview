@@ -4,6 +4,7 @@
   "private": true,
   "description": "Static marketing website for Smarta remote pump and water management.",
   "scripts": {
+    "build:preview": "node scripts/build-preview.mjs",
     "dev": "serve . -l 4173 --no-clipboard",
     "test": "npm run test:html && npm run test:site",
     "test:html": "html-validate index.html 404.html resources/index.html privacy/index.html",

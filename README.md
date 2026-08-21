@@ -46,7 +46,7 @@ The abstract water-network background was generated with OpenAI's built-in image
 
 ## Deployment
 
-Pushing `main` triggers `.github/workflows/pages.yml`, validates the site and publishes the repository as a GitHub Pages preview. The canonical URLs and sitemap intentionally point to `https://smarta.co.za/` for the eventual production launch.
+Pushing `main` triggers `.github/workflows/pages.yml`, validates the site and publishes a clean `_site` artifact as a GitHub Pages preview. The source canonical URLs and sitemap intentionally point to `https://smarta.co.za/` for the eventual production launch. During the preview build, only the Open Graph URL and image URL are rewritten to the GitHub Pages address so a shared preview link resolves to the preview rather than the existing production site.
 
 Before replacing production, confirm current contact details, legal copy, app-store availability, analytics/consent requirements and the approved current technical documents. The PDFs in `documents/` are explicitly presented as a 2018 archive.
 
