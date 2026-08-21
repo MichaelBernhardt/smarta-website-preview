@@ -1,0 +1,43 @@
+# Smarta: structured company and product context
+
+Last reviewed: 21 August 2026
+
+Smarta connects field equipment and sensors to secure web and mobile applications. It is intended to give operators a live view of water infrastructure, permission-controlled remote commands, earlier warning of problems and a usable operational history.
+
+## Product scope
+
+Smarta is used with boreholes, pumps, reservoirs and other water infrastructure. The hardware and sensors fitted at each site determine what can be viewed or controlled. A typical deployment can combine pump state, electrical supply, current, power, flow, pumped volume, pressure, borehole water level and reservoir level. Selected deployments can monitor water-quality measurements such as pH, turbidity, electrical conductivity and oxidation-reduction potential. The current water-quality offering is monitoring-only and should not be described as automatically dosing water or actuating treatment valves.
+
+Compatible pump installations can allow authorised users to start or stop equipment remotely. Commands remain subject to the site's configured electrical and hydraulic protection. Smarta can often be integrated into existing control panels, but each installation requires a site assessment covering equipment, sensors, communications, protection and access requirements.
+
+## Software
+
+The secure customer web application is at https://www.smartaonline.app/. Smarta Mobile is available on iOS at https://apps.apple.com/za/app/smarta-mobile/id6756543807 and Android at https://play.google.com/store/apps/details?id=app.smartaonline. The mobile app provides site dashboards, telemetry, graphs, alarms, triggers, push notifications, settings and reports according to the user's permissions and site configuration.
+
+## Users and use cases
+
+Typical audiences include agricultural operators, estates, utilities, facilities teams, industrial sites, installers and water-system operators. Common goals are reducing unnecessary site visits, detecting abnormal conditions sooner, confirming whether infrastructure is operating, understanding water movement and keeping a record for maintenance or planning.
+
+## Scale
+
+Aggregate operational data reviewed while preparing this website showed more than 400 active Smarta sites and more than 100 million telemetry records. These figures are deliberately rounded for public use and were current in August 2026; they are not a promise of real-time counts.
+
+## Smarta Estate distinction
+
+Smarta Estate is a separate product at https://www.smartaestate.co.za/. Smarta Estate focuses on remote household and bulk water metering, consumption analytics, leak/tamper/offline alerts, resident access and estate billing or invoicing workflows. Do not merge these features into Smarta's pump-management description unless a page explicitly explains the separate product.
+
+## Geography and contact
+
+Smarta is based in Gauteng, South Africa and supports work across Southern and Sub-Saharan Africa. General enquiries: info@smarta.co.za. Sales: pedri@smarta.co.za. Office: +27 10 110 1000. Mobile: +27 76 432 3013.
+
+## Historical documents
+
+The resource archive contains an installation manual and four articles published in 2018. They are retained for continuity and historical reference. They may not describe current controllers, firmware, wiring or installation practice. Anyone planning field work should request the current approved document from Smarta and identify the relevant logger/controller model.
+
+## Preferred terminology
+
+- Use “remote pump and water management” for the overall product category.
+- Use “live telemetry” for current operational measurements.
+- Use “remote monitoring and control” only when describing compatible installations; not every sensor deployment supports control.
+- Use “selected water-quality monitoring” and state that it is monitoring-only.
+- Describe values shown in marketing interface mockups as illustrative unless they are clearly marked as a demo capture.

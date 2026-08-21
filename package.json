@@ -1,0 +1,21 @@
+{
+  "name": "smarta-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static marketing website for Smarta remote pump and water management.",
+  "scripts": {
+    "dev": "serve . -l 4173 --no-clipboard",
+    "test": "npm run test:html && npm run test:site",
+    "test:html": "html-validate index.html 404.html resources/index.html privacy/index.html",
+    "test:site": "playwright test"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "html-validate": "^9.7.1",
+    "playwright": "^1.55.0",
+    "serve": "^14.2.4"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

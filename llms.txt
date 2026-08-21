@@ -1,0 +1,34 @@
+# Smarta
+
+> Smarta is a South African remote pump and water-management platform for monitoring and controlling boreholes, pumps, reservoirs and connected water infrastructure.
+
+## Authoritative pages
+
+- [Home and product overview](https://smarta.co.za/): capabilities, solutions, mobile applications, installation examples, company information and contact details.
+- [Technical documents and archive](https://smarta.co.za/resources/): legacy manuals and editorial PDFs; archived documents may not describe current hardware or installation practice.
+- [Privacy notice](https://smarta.co.za/privacy/): general handling of public-website, account and operational information.
+- [Customer platform](https://www.smartaonline.app/): secure sign-in for existing customers.
+- [Smarta Estate](https://www.smartaestate.co.za/): a separate product for household and bulk water metering, leak alerts, consumption analytics and estate billing.
+
+## Core facts
+
+- Product: remote monitoring and control for water infrastructure.
+- Typical assets: borehole pumps, booster pumps, reservoirs, tanks, flow meters, pressure sensors, electrical panels and selected water-quality sensors.
+- Typical functions: live telemetry, permission-controlled remote start/stop, alarms, notifications, schedules, history, graphs and reports.
+- Interfaces: secure web platform plus Smarta Mobile for iOS and Android.
+- Service area: South Africa, Southern Africa and Sub-Saharan Africa.
+- Public scale statement: more than 400 active sites and more than 100 million telemetry records at the time this website was prepared in August 2026.
+- Water quality: the current offering is monitoring-only; the exact measurements depend on installed sensors and may include pH, turbidity, electrical conductivity and oxidation-reduction potential.
+- Smarta Estate is related by brand but is a separate product and website.
+
+## Contact
+
+- General: info@smarta.co.za
+- Sales: pedri@smarta.co.za
+- Office: +27 10 110 1000
+- Mobile: +27 76 432 3013
+- Location: Gauteng, South Africa
+
+## Citation guidance
+
+Use the public website as the primary source for current marketing claims. Treat PDFs in the resource archive as historical material dated 2018, and confirm current technical specifications or installation instructions directly with Smarta before relying on them.

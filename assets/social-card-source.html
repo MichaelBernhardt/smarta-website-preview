@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <title>Smarta social card source</title>
+    <style>
+      * { box-sizing: border-box; }
+      html, body { width: 1200px; height: 630px; margin: 0; overflow: hidden; }
+      body {
+        position: relative;
+        color: #fff;
+        font-family: "Avenir Next", Avenir, "Segoe UI", Arial, sans-serif;
+        background: #042f49 url("../images/brand/water-network-hero.jpg") center / cover;
+      }
+      body::before {
+        position: absolute;
+        inset: 0;
+        content: "";
+        background: linear-gradient(90deg, rgba(3, 31, 49, .99) 0%, rgba(3, 39, 60, .95) 47%, rgba(3, 39, 60, .45) 72%, rgba(3, 39, 60, .2));
+      }
+      .photo {
+        position: absolute;
+        top: 55px;
+        right: -40px;
+        width: 510px;
+        height: 520px;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,.25);
+        border-radius: 32px;
+        box-shadow: 0 35px 90px rgba(0,0,0,.4);
+        transform: rotate(2deg);
+      }
+      .photo::after {
+        position: absolute;
+        inset: 0;
+        content: "";
+        background: linear-gradient(90deg, rgba(4,44,67,.28), transparent 35%);
+      }
+      .photo img { width: 100%; height: 100%; object-fit: cover; }
+      .content {
+        position: relative;
+        z-index: 2;
+        width: 770px;
+        padding: 54px 0 0 64px;
+      }
+      .logo {
+        width: 190px;
+        height: 96px;
+        object-fit: contain;
+        object-position: left center;
+        filter: brightness(0) invert(1);
+      }
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 42px 0 19px;
+        color: #7ce2eb;
+        font-size: 14px;
+        font-weight: 800;
+        letter-spacing: .18em;
+        text-transform: uppercase;
+      }
+      .eyebrow::before { width: 28px; height: 2px; content: ""; background: #54d3df; }
+      h1 {
+        max-width: 700px;
+        margin: 0;
+        font-size: 65px;
+        font-weight: 750;
+        letter-spacing: -.055em;
+        line-height: .98;
+      }
+      h1 span { color: #54d3df; }
+      p {
+        max-width: 665px;
+        margin: 23px 0 0;
+        color: rgba(235,247,250,.77);
+        font-size: 19px;
+        line-height: 1.55;
+      }
+      .chip {
+        position: absolute;
+        z-index: 3;
+        right: 35px;
+        bottom: 35px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 11px 16px;
+        border: 1px solid rgba(255,255,255,.2);
+        border-radius: 999px;
+        background: rgba(3,31,49,.82);
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .chip::before { width: 8px; height: 8px; content: ""; border-radius: 50%; background: #52dfa8; box-shadow: 0 0 0 5px rgba(82,223,168,.13); }
+    </style>
+  </head>
+  <body>
+    <div class="photo"><img src="../images/installations/solar-pump-room-2026-06-17.jpg" alt=""></div>
+    <main class="content">
+      <img class="logo" src="../images/brand/smarta-official-logo.png" alt="Smarta">
+      <div class="eyebrow">Remote water infrastructure</div>
+      <h1>Know what your water system is doing. <span>From anywhere.</span></h1>
+      <p>Live monitoring, remote control, alerts and reporting for pumps, boreholes and reservoirs.</p>
+    </main>
+    <div class="chip">Web · iOS · Android</div>
+  </body>
+</html>
