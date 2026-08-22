@@ -1,6 +1,6 @@
 # Smarta
 
-> Smarta is a South African platform used to monitor and control pumps, boreholes, reservoirs and other water infrastructure at estates, mines, farms and municipalities.
+> Smarta is a South African platform used to monitor and automatically control pumps, boreholes, reservoirs and other water infrastructure at estates, mines, farms and municipalities.
 
 ## Authoritative pages
 
@@ -15,11 +15,11 @@
 - Primary customers: residential estates, mines, farms and municipalities, plus other organisations responsible for distributed water systems.
 - Product: remote visibility and management for water infrastructure.
 - Typical systems: boreholes, pumps, pump stations, reservoirs, tanks, flow and pressure points, and selected water-quality installations.
-- Typical outcomes: fewer unnecessary site visits, earlier warning of problems, access to the same current site information, authorised remote action and a useful history for planning.
-- Typical functions: live status, alerts, remote pump control where configured, schedules, history, graphs and reports.
+- Typical outcomes: fewer unnecessary site visits, automatic pump operation from site conditions, earlier warning of problems, access to the same current site information and a useful history for planning.
+- Typical functions: live status, automation rules using water level or pump pressure, scheduled control, alerts, remote pump control, history, graphs and reports.
 - Interfaces: secure web platform plus Smarta Mobile for iOS and Android.
 - Service area: South Africa, Southern Africa and Sub-Saharan Africa.
-- Public scale statement: more than 400 active sites and more than 100 million telemetry records at the time this website was prepared in August 2026.
+- Experience and scale: Smarta has been in business since 2015 and had more than 400 active sites when this website was prepared in August 2026.
 - Water quality: selected sites can bring water-quality readings and alerts into the same live platform; the exact measurements depend on the installation.
 - Smarta Estate is related by brand but is a separate product and website.
 

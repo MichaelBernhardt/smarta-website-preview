@@ -2,7 +2,7 @@
 
 Last reviewed: 22 August 2026
 
-Smarta is a South African system for remotely monitoring and controlling pumps and water infrastructure. Customers use it through a web platform and mobile apps.
+Smarta is a South African system for remotely monitoring and automatically controlling pumps and water infrastructure. Customers use it through a web platform and mobile apps.
 
 ## Who Smarta serves
 
@@ -22,6 +22,7 @@ Smarta can bring pumps, boreholes, reservoirs, flow, pressure, water levels, sel
 The platform helps authorised users:
 
 - see current site and equipment status;
+- automatically start or stop pumps from water-level, pump-pressure and schedule rules;
 - receive alerts when the system moves outside expected conditions;
 - start or stop compatible pumps remotely where control is configured;
 - use schedules for repeatable operation;
@@ -32,15 +33,15 @@ Smarta can often be added to existing water equipment. Each engagement begins wi
 
 ## Software
 
-The secure customer web application is at https://www.smartaonline.app/. Smarta Mobile is available on iOS at https://apps.apple.com/za/app/smarta-mobile/id6756543807 and Android at https://play.google.com/store/apps/details?id=app.smartaonline. The mobile app provides live site views, history, alarms, notifications, authorised controls, schedules and reports according to each user's access.
+The secure customer web application is at https://www.smartaonline.app/. Smarta Mobile is available on iOS at https://apps.apple.com/za/app/smarta-mobile/id6756543807 and Android at https://play.google.com/store/apps/details?id=app.smartaonline. The software provides live site views, automation rules, history, alarms, notifications, authorised controls, schedules and reports according to each user's access.
 
 ## Customer outcomes
 
 Customers use Smarta to reduce unnecessary site visits, find problems earlier, confirm that water is moving as expected and keep a record for maintenance and planning.
 
-## Scale
+## Experience and scale
 
-Aggregate operational data reviewed while preparing this website showed more than 400 active Smarta sites and more than 100 million operating records. These figures are deliberately rounded for public use and were current in August 2026; they are not a promise of real-time counts. The aggregate review was read-only and no customer identities, exact locations or private operational records are included in the website repository.
+Smarta has been in business since 2015. Aggregate operational data reviewed while preparing this website showed more than 400 active Smarta sites in August 2026. The site count is deliberately rounded for public use and is not a promise of a real-time count. The aggregate review was read-only. No customer names, account identities, site identifiers, credentials or exact locations are included in the website repository.
 
 ## Smarta Estate distinction
 
@@ -59,6 +60,7 @@ The resource archive contains an installation manual and four articles published
 - Use “water management” or “remote pump and water management” for the overall product category.
 - Lead with the sectors “estates, mines, farms and municipalities” when explaining who Smarta serves.
 - Use “live view” for the customer-facing experience and “operating data” when more detail is useful.
+- Describe automated control plainly: rules can start or stop pumps from water-level, pump-pressure and schedule conditions.
 - Use “authorised remote control” only where a compatible installation is configured for control.
 - Keep Smarta Estate clearly identified as a separate product for household and bulk metering, resident access and billing workflows.
-- Describe the homepage panorama as conceptual and values shown in marketing interface mockups as illustrative unless they are clearly marked as a demo capture.
+- Describe the homepage panorama as conceptual. Product screenshots show current interfaces; marketing status-card values are illustrative.

@@ -2,7 +2,7 @@
   "name": "smarta-website",
   "version": "1.0.0",
   "private": true,
-  "description": "Static marketing website for Smarta remote pump and water management.",
+  "description": "Static marketing website for Smarta remote monitoring and automated pump control.",
   "scripts": {
     "build:preview": "node scripts/build-preview.mjs",
     "dev": "serve . -l 4173 --no-clipboard",

@@ -37,9 +37,22 @@ The twelve installation originals below were supplied in Michael's Downloads fol
 | --- | --- | --- |
 | `originals/app-screenshots/smarta-mobile-sites-ios.png` | `../images/app/smarta-mobile-sites-ios.jpg` | Current Smarta Mobile v3 demo-account Sites screen, built locally and captured on an iPhone 17 Pro iOS 26.5 simulator on 21 August 2026. |
 | `originals/app-screenshots/smarta-mobile-live-borehole-ios.png` | `../images/app/smarta-mobile-live-borehole-ios.jpg` | Current demo-account live borehole screen from the same simulator session. No customer production records are visible. |
-| `originals/smarta-mobile-campaign.png` | `../images/app/smarta-mobile-campaign.png` and `.jpg` | Existing Smarta Mobile campaign composite supplied in Downloads. Retained even though the final homepage favours the two live demo captures. |
+| `originals/app-screenshots/smarta-mobile-reservoir-anonymised.png` | `../images/app/smarta-mobile-reservoir-anonymised.jpg` | Current reservoir screen captured on an iPhone 17 Pro iOS 26.5 simulator on 22 August 2026. The site name was replaced with `North Reservoir` using the OpenAI built-in image editor; the public image contains no customer name, location or identifier. |
+| `originals/smarta-mobile-campaign.png` | `../images/app/smarta-mobile-campaign.png` and `.jpg` | Existing Smarta Mobile campaign composite supplied in Downloads. Retained for provenance even though the homepage uses current product captures. |
 | — | `../images/app/app-store-icon.png` | Apple App Store artwork from the mobile application's repository. |
 | — | `../images/app/google-play-icon.png` | Google Play artwork from the mobile application's repository. |
+
+Reservoir screenshot edit prompt:
+
+> Use case: text-localization. Asset type: authentic Smarta mobile app screenshot for a public website. Replace only the private site name in the top navigation header with the exact text “North Reservoir”. Change only the site-name text in the top white navigation header. Keep the official Smarta icon, back button, grid button, status bar, reservoir illustration, telemetry values, cards, controls, typography, spacing, colours, dimensions and every other element visually unchanged. Match the existing dark sans-serif header type. Do not add any text, logos, watermarks or decorations.
+
+## Smarta Online product capture
+
+| Repository source | Web derivative | Provenance |
+| --- | --- | --- |
+| `originals/platform-screenshots/smarta-online-telemetry-anonymised.png` | `../images/platform/smarta-online-telemetry-anonymised.jpg` and `.webp` | Current Smarta Online telemetry screen captured on 22 August 2026. API responses and visible text were rewritten in memory before capture so the public asset contains only the aliases `North Reservoir` and `Smarta Demo`; no customer name, user name, site identifier, credential or location was written to the asset. |
+
+The repeatable capture utility is retained at `../scripts/capture-anonymised-product-screenshots.mjs`. It requires credentials through temporary environment variables, performs a read-only reservoir scan, verifies that private labels are absent and writes only anonymised output. Credentials are never written to the repository.
 
 ## Generated brand-supporting image
 
@@ -69,7 +82,7 @@ Sector panorama generation prompt:
 > Constraints: no text, no letters, no numbers, no logos, no brand marks, no UI, no map pins, no data overlays, no people in close-up, no fantasy megastructures, no watermark. Do not imply this is a real Smarta installation. Maintain plausible Southern African geography and infrastructure.
 > Avoid: generic smart-city neon graphics, circuit-board motifs, sci-fi cities, glossy stock-photo look, obvious four-panel collage, exaggerated blue water, American suburban architecture.
 
-The panorama is identified on the page as a conceptual sector landscape. It creates broad visual context for estates, mines, farms and municipalities; it is never presented as a customer site. The installation gallery remains the source of real field photography.
+The panorama creates broad visual context for estates, mines, farms and municipalities and is not a customer-site photograph. The installation gallery remains the source of real field photography.
 
 ## Social-sharing card
 

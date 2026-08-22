@@ -1,7 +1,7 @@
 {
   "name": "Smarta Pump Management Systems",
   "short_name": "Smarta",
-  "description": "Remote monitoring and control for pumps, boreholes, reservoirs and water systems.",
+  "description": "Remote monitoring and automated control for pumps, boreholes, reservoirs and water systems.",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#f5f8f9",

@@ -44,6 +44,8 @@ test('homepage mobile navigation and primary content work', async ({ page }) => 
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
 
+  await expect(page.locator('.mobile-header-cta')).toBeVisible();
+  await expect(page.locator('.mobile-header-cta')).toHaveAttribute('href', '#contact');
   const toggle = page.locator('[data-menu-toggle]');
   await expect(toggle).toHaveAccessibleName('Open navigation');
   await toggle.click();
@@ -55,7 +57,15 @@ test('homepage mobile navigation and primary content work', async ({ page }) => 
   await expect(page).toHaveURL(/#platform$/);
 
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Know what your water system is doing');
+  await expect(page.locator('body')).toContainText('Automate pump control');
+  await expect(page.locator('.proof-strip')).toContainText('11');
+  await expect(page.locator('.proof-strip')).toContainText('years in business');
+  await expect(page.locator('body')).toContainText('See what changed, and when.');
+  await expect(page.locator('body')).not.toContainText('100M');
+  await expect(page.locator('.online-preview-screen figcaption')).toHaveCount(0);
   await expect(page.locator('#sectors .sector-card')).toHaveCount(4);
+  await expect(page.locator('#sectors .sector-card-top > span')).toHaveCount(0);
+  await expect(page.locator('.capability-card .card-number')).toHaveCount(0);
   await expect(page.locator('#sectors')).toContainText('Estates');
   await expect(page.locator('#sectors')).toContainText('Mines');
   await expect(page.locator('#sectors')).toContainText('Farms');
@@ -65,6 +75,9 @@ test('homepage mobile navigation and primary content work', async ({ page }) => 
   await expect(page.locator('body')).not.toContainText('valve automation is not included');
   await expect(page.getByRole('link', { name: /Apple App Store/ })).toHaveAttribute('href', /apps\.apple\.com/);
   await expect(page.getByRole('link', { name: /Google Play/ })).toHaveAttribute('href', /play\.google\.com/);
+  await expect(page.getByRole('link', { name: /Request a site assessment/ }).nth(1)).toHaveAttribute('href', '#contact');
+  await expect(page.locator('img[src="images/app/smarta-mobile-reservoir-anonymised.jpg"]')).toHaveCount(1);
+  await expect(page.locator('img[src="images/platform/smarta-online-telemetry-anonymised.jpg"]')).toHaveCount(1);
 });
 
 test('SEO and machine-readable endpoints are present', async ({ page, request }) => {
