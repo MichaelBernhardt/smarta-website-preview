@@ -1,6 +1,6 @@
 # Asset manifest and provenance
 
-Last reviewed: 21 August 2026
+Last reviewed: 22 August 2026
 
 This repository keeps every picture and document used to produce the website. Original files are preserved separately from compressed or cropped web derivatives.
 
@@ -8,7 +8,7 @@ This repository keeps every picture and document used to produce the website. Or
 
 | Repository source | Web derivative | Provenance |
 | --- | --- | --- |
-| `originals/smarta-official-logo.png` | `../images/brand/smarta-official-logo.png` | Official logo downloaded from the existing `smarta.co.za` WordPress media library; derivative is transparently cropped for the header. |
+| `originals/smarta-official-logo.png` | `../images/brand/smarta-official-logo.png` and `-260.png` | Official logo downloaded from the existing `smarta.co.za` WordPress media library; derivatives are transparently cropped and sized for website use. |
 | — | `../images/brand/smarta-mark.png` | Smarta mark from the existing Smarta Estate brand assets. |
 | `originals/smarta-mobile-app-icon.png` | `../images/brand/smarta-app-icon.png`, `-192.png` and `-512.png` | Current 1024 px Smarta Mobile application icon from the iOS app project, plus correctly sized web-manifest derivatives. |
 
@@ -45,13 +45,31 @@ The twelve installation originals below were supplied in Michael's Downloads fol
 
 | Repository source | Web derivative | Mode |
 | --- | --- | --- |
-| `originals/generated/water-network-hero-source.png` | `../images/brand/water-network-hero.jpg` | OpenAI built-in image generation, new image, 21 August 2026. |
+| `originals/generated/water-network-hero-source.png` | `../images/brand/water-network-hero.jpg`, `.webp` and `-960.webp` | OpenAI built-in image generation, new image, 21 August 2026. |
+| `originals/generated/smarta-sectors-panorama-source.png` | `../images/sectors/smarta-sectors-panorama.jpg`, `.webp` and `-960.webp` | OpenAI built-in image generation, new image, 22 August 2026. |
 
 Exact generation prompt:
 
 > Use case: stylized-concept. Asset type: wide website hero background texture and social-sharing backdrop. Primary request: Create a sophisticated abstract visual suggesting connected water infrastructure, remote telemetry, and flowing groundwater. Use layered topographic contour lines, subtle concentric signal ripples, and fluid translucent currents, with a premium technical editorial feel. Scene/backdrop: deep navy-to-petrol-blue atmospheric field with teal and pale aqua highlights and one extremely subtle warm orange accent echoing industrial control enclosures. Style/medium: refined abstract 3D/graphic hybrid, crisp but organic, high-end B2B technology campaign, realistic material depth without depicting literal equipment. Composition/framing: very wide landscape composition; quiet generous negative space through the left half for website copy; visual energy and detail concentrated toward the right and lower edge; seamless enough to crop responsively. Lighting/mood: luminous, calm, precise, dependable. Constraints: no logo, no brand name, no words, no letters, no numbers, no maps, no people, no devices, no buildings, no watermark; avoid generic stock-tech circuit boards and avoid neon cyberpunk styling.
 
 The generated image is used only as an abstract backdrop. Real installation claims are illustrated with the separately identified field photographs.
+
+Sector panorama generation prompt:
+
+> Use case: stylized-concept
+> Asset type: wide homepage sector panorama for a premium B2B water-management website
+> Primary request: Create one expansive Southern African landscape that communicates water infrastructure serving four customer worlds: a well-kept residential estate, a large open-pit mine, productive agricultural land, and a municipal town water system. These environments should transition naturally from left to right as one coherent regional panorama, connected visually by reservoirs, water towers, pump stations, pipelines and flowing water routes, without turning into a technical diagram.
+> Scene/backdrop: broad elevated view across a dry-to-green Southern African landscape beneath a huge open sky; estate rooftops and landscaped communal spaces, distant mine benches and processing area, irrigated farm fields and centre pivots, and a town with a reservoir/water tower and modest civic infrastructure.
+> Subject: the scale and continuity of water across communities and operations, with infrastructure visible but not over-detailed.
+> Style/medium: sophisticated editorial 3D illustration with believable materials and atmospheric realism; clearly conceptual, not a documentary installation photograph; high-end architecture and infrastructure campaign visual.
+> Composition/framing: very wide cinematic panorama, approximately 2.2:1; strong sense of distance and scale; four readable zones but no hard dividers; calm uncluttered lower and upper margins for responsive cropping; no dominant foreground object.
+> Lighting/mood: warm early-morning Southern African light, confident, calm, dependable, optimistic; subtle haze creates depth.
+> Color palette: Smarta-aligned deep navy shadows, water blue and teal highlights, sunlit ochre earth, natural greens; restrained rather than saturated.
+> Materials/textures: realistic water, vegetation, earth, concrete and metal at an editorial illustration level.
+> Constraints: no text, no letters, no numbers, no logos, no brand marks, no UI, no map pins, no data overlays, no people in close-up, no fantasy megastructures, no watermark. Do not imply this is a real Smarta installation. Maintain plausible Southern African geography and infrastructure.
+> Avoid: generic smart-city neon graphics, circuit-board motifs, sci-fi cities, glossy stock-photo look, obvious four-panel collage, exaggerated blue water, American suburban architecture.
+
+The panorama is identified on the page as a conceptual sector landscape. It creates broad visual context for estates, mines, farms and municipalities; it is never presented as a customer site. The installation gallery remains the source of real field photography.
 
 ## Social-sharing card
 

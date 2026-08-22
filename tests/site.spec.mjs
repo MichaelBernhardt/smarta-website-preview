@@ -55,8 +55,14 @@ test('homepage mobile navigation and primary content work', async ({ page }) => 
   await expect(page).toHaveURL(/#platform$/);
 
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Know what your water system is doing');
+  await expect(page.locator('#sectors .sector-card')).toHaveCount(4);
+  await expect(page.locator('#sectors')).toContainText('Estates');
+  await expect(page.locator('#sectors')).toContainText('Mines');
+  await expect(page.locator('#sectors')).toContainText('Farms');
+  await expect(page.locator('#sectors')).toContainText('Municipalities');
   await expect(page.locator('#installations .gallery-card')).toHaveCount(12);
-  await expect(page.getByRole('link', { name: /Visit Smarta Estate/ })).toHaveAttribute('href', 'https://www.smartaestate.co.za/');
+  await expect(page.getByRole('link', { name: /See Smarta Estate/ })).toHaveAttribute('href', 'https://www.smartaestate.co.za/');
+  await expect(page.locator('body')).not.toContainText('valve automation is not included');
   await expect(page.getByRole('link', { name: /Apple App Store/ })).toHaveAttribute('href', /apps\.apple\.com/);
   await expect(page.getByRole('link', { name: /Google Play/ })).toHaveAttribute('href', /play\.google\.com/);
 });
@@ -64,7 +70,7 @@ test('homepage mobile navigation and primary content work', async ({ page }) => 
 test('SEO and machine-readable endpoints are present', async ({ page, request }) => {
   await page.goto('/');
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://smarta.co.za/');
-  await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /borehole pumps/);
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /estates, mines, farms and municipalities/i);
   await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(1);
 
   for (const path of ['/robots.txt', '/sitemap.xml', '/llms.txt', '/llms-full.txt', '/site.webmanifest', '/images/social/smarta-og.jpg']) {

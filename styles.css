@@ -43,7 +43,7 @@
   inset: 0;
   background:
     linear-gradient(90deg, rgba(4, 42, 67, .96) 0%, rgba(4, 42, 67, .75) 54%, rgba(4, 42, 67, .36) 100%),
-    url("images/brand/water-network-hero.jpg") center / cover;
+    image-set(url("images/brand/water-network-hero.webp") type("image/webp"), url("images/brand/water-network-hero.jpg") type("image/jpeg")) center / cover;
 }
 
 .not-found-inner {
@@ -164,12 +164,12 @@ a {
 }
 
 .container {
-  width: min(1240px, calc(100% - 48px));
+  width: min(1320px, calc(100% - 48px));
   margin-inline: auto;
 }
 
 .section {
-  padding: 116px 0;
+  padding: 132px 0;
 }
 
 .site-header {
@@ -404,9 +404,9 @@ a {
 .hero {
   position: relative;
   isolation: isolate;
-  min-height: 850px;
+  min-height: 930px;
   overflow: hidden;
-  padding: 173px 0 90px;
+  padding: 186px 0 112px;
   background:
     radial-gradient(circle at 80% 25%, rgba(38, 178, 199, 0.18), transparent 28%),
     linear-gradient(132deg, var(--navy-950) 0%, #053955 49%, #075d75 100%);
@@ -442,7 +442,7 @@ a {
   position: absolute;
   z-index: -2;
   inset: 0;
-  background-image: linear-gradient(90deg, rgba(3, 28, 45, 0.96) 0%, rgba(3, 28, 45, 0.7) 41%, rgba(3, 28, 45, 0.24) 70%), url("images/brand/water-network-hero.jpg");
+  background-image: linear-gradient(90deg, rgba(3, 28, 45, 0.96) 0%, rgba(3, 28, 45, 0.7) 41%, rgba(3, 28, 45, 0.24) 70%), image-set(url("images/brand/water-network-hero.webp") type("image/webp"), url("images/brand/water-network-hero.jpg") type("image/jpeg"));
   background-position: center, center;
   background-size: cover;
   opacity: 0.78;
@@ -450,15 +450,15 @@ a {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(540px, 1fr);
+  grid-template-columns: minmax(0, 0.98fr) minmax(540px, 1.02fr);
   align-items: center;
-  gap: 52px;
+  gap: 62px;
 }
 
 .hero-copy {
   position: relative;
   z-index: 3;
-  max-width: 650px;
+  max-width: 760px;
 }
 
 .eyebrow {
@@ -500,8 +500,9 @@ a {
 }
 
 .hero h1 {
-  max-width: 690px;
-  font-size: clamp(3.4rem, 5.5vw, 5.2rem);
+  max-width: 780px;
+  font-size: clamp(4rem, 6.2vw, 6.6rem);
+  line-height: 0.96;
 }
 
 .hero h1 em {
@@ -511,10 +512,10 @@ a {
 }
 
 .hero-lead {
-  max-width: 620px;
-  margin: 28px 0 0;
+  max-width: 680px;
+  margin: 31px 0 0;
   color: rgba(230, 244, 249, 0.76);
-  font-size: 1.14rem;
+  font-size: 1.2rem;
   line-height: 1.72;
 }
 
@@ -838,7 +839,7 @@ a {
 .about-grid h2,
 .faq-intro h2,
 .contact-grid h2 {
-  font-size: clamp(2.55rem, 4.2vw, 4.25rem);
+  font-size: clamp(3rem, 4.8vw, 5rem);
 }
 
 .split-heading {
@@ -873,6 +874,171 @@ a {
   font-size: 1.02rem;
 }
 
+.sectors {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 90% 8%, rgba(57, 194, 211, 0.15), transparent 24%),
+    linear-gradient(145deg, #021722, var(--navy-950) 48%, #063c50);
+  color: var(--white);
+}
+
+.sectors::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  content: "";
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 68px 68px;
+  mask-image: linear-gradient(to bottom, #000, transparent 72%);
+}
+
+.sector-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.5fr);
+  align-items: end;
+  gap: 90px;
+  margin-bottom: 64px;
+}
+
+.sector-intro h2 {
+  max-width: 930px;
+  margin: 0;
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 5.9vw, 6.5rem);
+  font-weight: 680;
+  line-height: 0.97;
+  letter-spacing: -0.062em;
+}
+
+.sector-intro > p {
+  margin: 0 0 10px;
+  color: rgba(232, 246, 249, 0.68);
+  font-size: 1.06rem;
+  line-height: 1.78;
+}
+
+.sector-panorama {
+  position: relative;
+  min-height: 590px;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 38px;
+  background: #163f4f;
+  box-shadow: 0 50px 120px rgba(0, 0, 0, 0.32);
+}
+
+.sector-panorama::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: linear-gradient(180deg, rgba(1, 18, 28, 0.02) 36%, rgba(1, 18, 28, 0.84) 100%);
+  pointer-events: none;
+}
+
+.sector-panorama picture,
+.sector-panorama img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 590px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.sector-panorama figcaption {
+  position: absolute;
+  z-index: 2;
+  top: 22px;
+  right: 22px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background: rgba(2, 24, 35, 0.7);
+  color: rgba(255, 255, 255, 0.73);
+  font-size: 0.62rem;
+  font-weight: 720;
+  backdrop-filter: blur(12px);
+}
+
+.sector-grid {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 13px;
+  margin: -158px 18px 0;
+}
+
+.sector-card {
+  min-height: 320px;
+  padding: 27px 27px 25px;
+  border: 1px solid rgba(255, 255, 255, 0.17);
+  border-radius: 24px;
+  background: rgba(3, 31, 45, 0.88);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(18px) saturate(130%);
+}
+
+.sector-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 44px;
+}
+
+.sector-card-top > span {
+  color: #7adbe4;
+  font-size: 0.66rem;
+  font-weight: 850;
+  letter-spacing: 0.14em;
+}
+
+.sector-card-top svg {
+  width: 30px;
+  height: 30px;
+  fill: none;
+  stroke: rgba(129, 225, 233, 0.8);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.55;
+}
+
+.sector-card h3 {
+  margin: 0;
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: 1.82rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.sector-card p {
+  margin: 13px 0 0;
+  color: rgba(232, 246, 249, 0.67);
+  font-size: 0.84rem;
+  line-height: 1.68;
+}
+
+.sector-card a {
+  display: inline-flex;
+  gap: 7px;
+  margin-top: 17px;
+  color: #88e5ec;
+  font-size: 0.69rem;
+  font-weight: 760;
+  line-height: 1.5;
+}
+
+.sector-card a:hover {
+  color: var(--white);
+}
+
 .platform {
   background:
     radial-gradient(circle at 5% 10%, rgba(52, 190, 207, 0.08), transparent 24%),
@@ -887,6 +1053,29 @@ a {
   border-radius: var(--radius-lg);
   background: var(--white);
   box-shadow: var(--shadow-sm);
+}
+
+.outcome-grid .capability-card {
+  min-height: 390px;
+  padding: 44px 42px 38px;
+}
+
+.outcome-grid .capability-card:nth-child(1) {
+  border-bottom-left-radius: var(--radius-lg);
+}
+
+.outcome-grid .capability-card:nth-child(3) {
+  border-bottom-right-radius: var(--radius-lg);
+}
+
+.outcome-grid .capability-card h3 {
+  max-width: 270px;
+  font-size: 1.62rem;
+}
+
+.outcome-grid .capability-card > p:not(.card-number) {
+  max-width: 320px;
+  font-size: 0.98rem;
 }
 
 .capability-card {
@@ -1949,7 +2138,7 @@ a {
   position: absolute;
   z-index: -1;
   inset: 0;
-  background: linear-gradient(90deg, rgba(2, 25, 39, 0.88), rgba(2, 25, 39, 0.3)), url("images/brand/water-network-hero.jpg") center / cover;
+  background: linear-gradient(90deg, rgba(2, 25, 39, 0.88), rgba(2, 25, 39, 0.3)), image-set(url("images/brand/water-network-hero.webp") type("image/webp"), url("images/brand/water-network-hero.jpg") type("image/jpeg")) center / cover;
   opacity: 0.54;
 }
 
@@ -2181,6 +2370,16 @@ a {
   .contact-grid {
     gap: 60px;
   }
+
+  .sector-grid {
+    grid-template-columns: repeat(2, 1fr);
+    margin: -125px 12px 0;
+  }
+
+  .sector-card {
+    min-height: 285px;
+    padding-inline: 23px;
+  }
 }
 
 @media (max-width: 980px) {
@@ -2240,6 +2439,31 @@ a {
     border-bottom: 1px solid var(--line);
   }
 
+  .sector-intro {
+    grid-template-columns: 1fr;
+    gap: 27px;
+  }
+
+  .sector-intro > p {
+    max-width: 660px;
+  }
+
+  .sector-panorama,
+  .sector-panorama picture,
+  .sector-panorama img {
+    min-height: 500px;
+  }
+
+  .sector-grid {
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: -125px;
+  }
+
+  .sector-card {
+    min-height: 285px;
+    padding: 28px;
+  }
+
   .section {
     padding: 90px 0;
   }
@@ -2263,6 +2487,30 @@ a {
 
   .capability-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .outcome-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .outcome-grid .capability-card {
+    min-height: auto;
+    border-radius: 0 !important;
+  }
+
+  .outcome-grid .capability-card:first-child {
+    border-top-left-radius: var(--radius-lg) !important;
+    border-top-right-radius: var(--radius-lg) !important;
+  }
+
+  .outcome-grid .capability-card:last-child {
+    border-bottom-right-radius: var(--radius-lg) !important;
+    border-bottom-left-radius: var(--radius-lg) !important;
+  }
+
+  .outcome-grid .capability-card h3,
+  .outcome-grid .capability-card > p:not(.card-number) {
+    max-width: 620px;
   }
 
   .capability-card:nth-child(3) {
@@ -2366,7 +2614,7 @@ a {
   }
 
   .hero-texture {
-    background-image: linear-gradient(180deg, rgba(3, 28, 45, 0.95), rgba(3, 28, 45, 0.58)), url("images/brand/water-network-hero.jpg");
+    background-image: linear-gradient(180deg, rgba(3, 28, 45, 0.95), rgba(3, 28, 45, 0.58)), image-set(url("images/brand/water-network-hero-960.webp") type("image/webp"), url("images/brand/water-network-hero.jpg") type("image/jpeg"));
     background-position: 70% center;
   }
 
@@ -2465,6 +2713,44 @@ a {
   .faq-intro h2,
   .contact-grid h2 {
     font-size: clamp(2.2rem, 10.5vw, 3rem);
+  }
+
+  .sector-intro h2 {
+    font-size: clamp(2.75rem, 11.5vw, 4.25rem);
+  }
+
+  .sector-intro {
+    margin-bottom: 39px;
+  }
+
+  .sector-panorama,
+  .sector-panorama picture,
+  .sector-panorama img {
+    min-height: 330px;
+  }
+
+  .sector-panorama {
+    border-radius: 25px;
+  }
+
+  .sector-panorama figcaption {
+    top: 13px;
+    right: 13px;
+    max-width: calc(100% - 26px);
+  }
+
+  .sector-grid {
+    grid-template-columns: 1fr;
+    margin: 14px 0 0;
+  }
+
+  .sector-card {
+    min-height: auto;
+    padding: 26px 25px;
+  }
+
+  .sector-card-top {
+    margin-bottom: 31px;
   }
 
   .split-heading,
@@ -2811,7 +3097,7 @@ a {
   position: absolute;
   z-index: -1;
   inset: 0;
-  background: linear-gradient(90deg, rgba(3, 27, 42, 0.93), rgba(3, 27, 42, 0.32)), url("images/brand/water-network-hero.jpg") center / cover;
+  background: linear-gradient(90deg, rgba(3, 27, 42, 0.93), rgba(3, 27, 42, 0.32)), image-set(url("images/brand/water-network-hero.webp") type("image/webp"), url("images/brand/water-network-hero.jpg") type("image/jpeg")) center / cover;
   opacity: 0.67;
 }
 

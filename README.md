@@ -5,7 +5,7 @@ A fast, static marketing site for [Smarta](https://smarta.co.za/), rebuilt aroun
 ## What is included
 
 - Responsive one-page product site with accessible navigation and progressive enhancement
-- Official Smarta logo and twelve original field-installation photographs
+- Official Smarta logo, twelve original field-installation photographs and a conceptual four-sector panorama
 - Two current Smarta Mobile screenshots captured from the built-in demo account on an iOS simulator
 - Mobile app links for the Apple App Store and Google Play
 - Technical-document archive with all five PDFs used from the existing website
@@ -32,9 +32,9 @@ npm test
 
 ## Content and claim notes
 
-The public scale statement is rounded from an aggregate, read-only review of production records on 21 August 2026: over 400 active sites and over 100 million telemetry records. No customer-level production data or production credentials are included in this repository. App screenshots use the product's demo account only.
+The public scale statement is rounded from aggregate, read-only reviews of production records on 21 and 22 August 2026: over 400 active sites and over 100 million telemetry records. Sector naming signals in the active-site data informed the emphasis on estates, mines, farms and municipal/community systems. No customer-level production data, customer identities, exact locations or production credentials are included in this repository. App screenshots use the product's demo account only.
 
-Water-quality copy deliberately says “monitoring-only.” Capabilities depend on fitted sensors and site configuration. Values in the homepage telemetry card are illustrative and labelled as such.
+Homepage copy stays at customer-decision level and avoids implementation caveats. Capabilities still depend on the site and its configuration, so the site assessment remains the starting point. Values in the homepage status card are illustrative and labelled as such.
 
 The privacy page is a practical website/platform overview, not a substitute for reviewing customer contracts, processor arrangements and the final production analytics stack before launch.
 
@@ -42,7 +42,7 @@ The privacy page is a practical website/platform overview, not a substitute for 
 
 All photographs and documents used by the site are committed to the repository. Untouched source files live under `assets/originals/`; web-ready derivatives live under `images/`; PDFs live under `documents/`. See [assets/ASSET_MANIFEST.md](assets/ASSET_MANIFEST.md) for the full manifest and provenance.
 
-The abstract water-network background was generated with OpenAI's built-in image generation on 21 August 2026. It was created as a brand-supporting texture—not as evidence of an installation. Its exact prompt and source path are recorded in the asset manifest.
+The abstract water-network background and the four-sector panorama were generated with OpenAI's built-in image generation on 21 and 22 August 2026. They are brand and context assets—not evidence of an installation. Their exact prompts and source paths are recorded in the asset manifest, while the homepage labels the sector panorama as conceptual.
 
 ## Deployment
 
