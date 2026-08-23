@@ -4,6 +4,12 @@ import { chromium, request } from 'playwright';
 const email = process.env.SMARTA_CAPTURE_EMAIL;
 const password = process.env.SMARTA_CAPTURE_PASSWORD;
 const chromePath = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+const hourMs = 3_600_000;
+const dayMs = 24 * hourMs;
+const telemetryLimit = 5_000;
+const parsedRank = Number.parseInt(process.env.SMARTA_CAPTURE_CANDIDATE_RANK || '1', 10);
+const requestedRank = Number.isFinite(parsedRank) ? Math.max(1, parsedRank) : 1;
+const outputPath = process.env.SMARTA_CAPTURE_OUTPUT || '/tmp/smarta-web-graph-anonymised.png';
 
 if (!email || !password) {
   throw new Error('SMARTA_CAPTURE_EMAIL and SMARTA_CAPTURE_PASSWORD are required.');
@@ -14,16 +20,179 @@ const finite = (value) => {
   return Number.isFinite(number) ? number : null;
 };
 
-const scrubObject = (value) => {
-  if (Array.isArray(value)) return value.map(scrubObject);
+const quantile = (values, position) => {
+  if (!values.length) return null;
+  const sorted = [...values].sort((a, b) => a - b);
+  const index = (sorted.length - 1) * position;
+  const lower = Math.floor(index);
+  const fraction = index - lower;
+  return sorted[lower + 1] === undefined
+    ? sorted[lower]
+    : sorted[lower] + fraction * (sorted[lower + 1] - sorted[lower]);
+};
+
+const median = (values) => quantile(values, 0.5);
+
+const hasCapability = (site, capability) => {
+  if (site?.productType === 'waterQuality') return false;
+  if (site?.loggerVersion !== 'V3') return true;
+  return Boolean(site?.siteV3?.capabilities?.[capability]);
+};
+
+const latestTelemetryTime = (site) => (
+  site?.siteV3?.latestTelemetryTime
+  || site?.siteV1?.latestTelemetryTime
+  || null
+);
+
+const bucketRows = (rows, sinceMs) => {
+  const buckets = new Map();
+  const bucketSize = 15 * 60_000;
+  const fields = ['level', 'current', 'power', 'flow', 'pressure', 'voltage'];
+
+  for (const row of rows) {
+    const time = new Date(row?.timeDate).getTime();
+    if (!Number.isFinite(time) || time < sinceMs) continue;
+    const telemetry = row?.telemV1 || {};
+    const sample = {
+      level: finite(telemetry.an1),
+      current: finite(telemetry.I),
+      power: finite(telemetry.P),
+      flow: finite(telemetry.an4),
+      pressure: finite(telemetry.an2),
+      voltage: finite(telemetry.V),
+    };
+    const bucket = Math.floor(time / bucketSize) * bucketSize;
+    if (!buckets.has(bucket)) {
+      buckets.set(bucket, Object.fromEntries(fields.map((field) => [field, []])));
+    }
+    const target = buckets.get(bucket);
+    for (const field of fields) {
+      if (sample[field] !== null) target[field].push(sample[field]);
+    }
+  }
+
+  return [...buckets.entries()]
+    .sort(([a], [b]) => a - b)
+    .map(([time, values]) => ({
+      time,
+      ...Object.fromEntries(fields.map((field) => [field, median(values[field])])),
+    }));
+};
+
+const smoothedValues = (samples, key) => samples
+  .map((sample) => sample[key])
+  .map((value, index, values) => {
+    if (value === null) return null;
+    return median(values
+      .slice(Math.max(0, index - 1), Math.min(values.length, index + 2))
+      .filter((candidate) => candidate !== null));
+  })
+  .filter((value) => value !== null);
+
+const countDirectionChanges = (values, threshold) => {
+  if (values.length < 3 || threshold <= 0) return 0;
+  let anchor = values[0];
+  let direction = 0;
+  let changes = 0;
+
+  for (const value of values.slice(1)) {
+    const delta = value - anchor;
+    if (Math.abs(delta) < threshold) continue;
+    const nextDirection = Math.sign(delta);
+    if (direction && nextDirection !== direction) changes += 1;
+    direction = nextDirection;
+    anchor = value;
+  }
+  return changes;
+};
+
+const countStateChanges = (values, threshold) => {
+  const states = values.map((value) => value > threshold);
+  let changes = 0;
+  for (let index = 1; index < states.length; index += 1) {
+    if (states[index] !== states[index - 1]) changes += 1;
+  }
+  return changes;
+};
+
+const analyseWindow = (rows, days) => {
+  const samples = bucketRows(rows, Date.now() - days * dayMs);
+  // A simultaneous voltage/level collapse is normally a reset or interrupted
+  // reading, not a water-system cycle. Exclude it from ranking (the published
+  // graph itself remains an untouched rendering of the real selected range).
+  const levelSamples = samples.filter((sample) => (
+    sample.level !== null && (sample.voltage === null || sample.voltage > 150)
+  ));
+  const levels = smoothedValues(levelSamples, 'level');
+  if (levels.length < 24) return null;
+
+  const level05 = quantile(levels, 0.05);
+  const level95 = quantile(levels, 0.95);
+  const levelSpan = Math.max(0, level95 - level05);
+  const visualDenominator = Math.max(Math.abs(level95), Math.abs(level05), 1);
+  const visualSpanPercent = (levelSpan / visualDenominator) * 100;
+  const directionThreshold = Math.max(0.025, levelSpan * 0.08);
+  const directionChanges = countDirectionChanges(levels, directionThreshold);
+  const rawTravel = levels.slice(1).reduce(
+    (total, value, index) => total + Math.abs(value - levels[index]),
+    0,
+  );
+  const travelPercent = (rawTravel / visualDenominator) * 100;
+
+  const currents = smoothedValues(samples, 'current');
+  const powers = smoothedValues(samples, 'power');
+  const flows = smoothedValues(samples, 'flow');
+  const electrical = currents.length >= powers.length ? currents : powers;
+  const electricalThreshold = currents.length >= powers.length ? 0.35 : 0.15;
+  const pumpTransitions = countStateChanges(electrical, electricalThreshold);
+  const activeFraction = electrical.length
+    ? electrical.filter((value) => value > electricalThreshold).length / electrical.length
+    : 0;
+  const flow95 = flows.length ? quantile(flows, 0.95) : 0;
+  const flow05 = flows.length ? quantile(flows, 0.05) : 0;
+  const flowSpan = Math.max(0, flow95 - flow05);
+
+  const firstTime = samples[0]?.time || 0;
+  const lastTime = samples.at(-1)?.time || 0;
+  const coverageHours = (lastTime - firstTime) / hourMs;
+  const latestAgeHours = (Date.now() - lastTime) / hourMs;
+  const robustMovement = Math.min(visualSpanPercent, 65) * 4
+    + Math.min(travelPercent, 220) * 0.55
+    + Math.min(directionChanges, 18) * 9;
+  const operatingMovement = Math.min(pumpTransitions, 24) * 7
+    + (activeFraction > 0.02 && activeFraction < 0.98 ? 35 : 0)
+    + Math.min(flowSpan, 100) * 0.3;
+  const coverage = Math.min(coverageHours / (days * 24), 1) * 55;
+  const freshness = latestAgeHours < 6 ? 45 : latestAgeHours < 24 ? 25 : 0;
+  const score = robustMovement + operatingMovement + coverage + freshness;
+
+  return {
+    days,
+    points: samples.length,
+    coverageHours,
+    latestAgeHours,
+    levelSpan,
+    visualSpanPercent,
+    directionChanges,
+    travelPercent,
+    pumpTransitions,
+    activeFraction,
+    flowSpan,
+    score,
+  };
+};
+
+const scrubObject = (value, siteAlias) => {
+  if (Array.isArray(value)) return value.map((child) => scrubObject(child, siteAlias));
   if (!value || typeof value !== 'object') return value;
 
   return Object.fromEntries(Object.entries(value).map(([key, child]) => {
-    if (key === 'siteName') return [key, 'North Reservoir'];
+    if (key === 'siteName') return [key, siteAlias];
     if (['company', 'customerName', 'organisation', 'organization'].includes(key)) {
       return [key, 'Smarta Demo'];
     }
-    return [key, scrubObject(child)];
+    return [key, scrubObject(child, siteAlias)];
   }));
 };
 
@@ -67,11 +236,11 @@ try {
   });
 
   let siteResponse = await api.get(
-    `${apiOrigin}/site/all/admin?limit=500&skip=0&sortBy=siteName:asc`,
+    `${apiOrigin}/site/all/admin?limit=2000&skip=0&sortBy=siteName:asc`,
   );
   if (!siteResponse.ok()) {
     siteResponse = await api.get(
-      `${apiOrigin}/site/all?limit=500&skip=0&sortBy=siteName:asc`,
+      `${apiOrigin}/site/all?limit=2000&skip=0&sortBy=siteName:asc`,
     );
   }
   if (!siteResponse.ok()) throw new Error(`Could not load sites (${siteResponse.status()}).`);
@@ -80,57 +249,83 @@ try {
   const sites = Array.isArray(sitePayload)
     ? sitePayload
     : sitePayload.sites || sitePayload.data || [];
-  const reservoirs = sites.filter(
-    (site) => site?.active !== false && String(site?.siteType).toLowerCase() === 'reservoir',
-  );
-  if (!reservoirs.length) throw new Error('No active reservoir sites were available.');
+  const candidates = sites.filter((site) => {
+    const siteType = String(site?.siteType || 'well').toLowerCase();
+    const latest = new Date(latestTelemetryTime(site)).getTime();
+    return site?.active !== false
+      && ['well', 'reservoir'].includes(siteType)
+      && hasCapability(site, 'analogLevel')
+      && Number.isFinite(latest)
+      && Date.now() - latest < 3 * dayMs;
+  });
+  if (!candidates.length) throw new Error('No recent water-level sites were available.');
 
-  const since = new Date(Date.now() - 7 * 86_400_000).toISOString();
+  const since = new Date(Date.now() - 7 * dayMs).toISOString();
   const until = new Date().toISOString();
   const scored = [];
 
-  for (const site of reservoirs.slice(0, 30)) {
+  const scanCandidate = async (site) => {
     try {
       const url = new URL(`${apiOrigin}/telemetry/alarms/triggers/${site._id}`);
       url.searchParams.set('skip', '0');
-      url.searchParams.set('limit', '900');
+      url.searchParams.set('limit', String(telemetryLimit));
       url.searchParams.set('sortBy', 'timeDate:desc');
       url.searchParams.set('gteDate', since);
       url.searchParams.set('lteDate', until);
       const response = await api.get(url.toString());
-      if (!response.ok()) continue;
+      if (!response.ok()) return;
       const rows = await response.json();
-      if (!Array.isArray(rows)) continue;
+      if (!Array.isArray(rows)) return;
 
-      const values = rows
-        .map((row) => finite(row?.telemV1?.an1))
-        .filter((value) => value !== null);
-      if (values.length < 24) continue;
+      const twoDay = analyseWindow(rows, 2);
+      const sevenDay = analyseWindow(rows, 7);
+      if (!twoDay && !sevenDay) return;
 
-      const spread = Math.max(...values) - Math.min(...values);
-      const latestAgeHours = rows[0]?.timeDate
-        ? (Date.now() - new Date(rows[0].timeDate).getTime()) / 3_600_000
-        : 9_999;
-      const hasDimensions = finite(site.reservoirHeight) > 0
-        && finite(site.reservoirDiameter) > 0;
-      const score = Math.min(values.length, 900)
-        + Math.min(spread * 120, 220)
-        + (latestAgeHours < 24 ? 150 : 0)
-        + (hasDimensions ? 80 : 0);
-      scored.push({ site, rows, values, score });
+      const windows = [twoDay, sevenDay].filter(Boolean);
+      const bestWindow = windows.reduce((best, current) => (
+        current.score > best.score ? current : best
+      ));
+      const reservoirBonus = String(site?.siteType).toLowerCase() === 'reservoir' ? 15 : 0;
+      scored.push({
+        site,
+        rows,
+        twoDay,
+        sevenDay,
+        bestWindow,
+        score: bestWindow.score + reservoirBonus,
+      });
     } catch {
       // A single inaccessible or malformed site should not stop the candidate scan.
     }
-  }
+  };
+
+  // Keep the scan bounded so it is faster than a serial pass without placing
+  // a burst of hundreds of historical queries on the production service.
+  const queue = [...candidates];
+  const workers = Array.from({ length: Math.min(4, queue.length) }, async () => {
+    while (queue.length) {
+      const site = queue.shift();
+      await scanCandidate(site);
+    }
+  });
+  await Promise.all(workers);
 
   scored.sort((a, b) => b.score - a.score);
-  const selected = scored[0];
-  if (!selected) throw new Error('No reservoir had enough recent level data.');
+  const selected = scored[requestedRank - 1];
+  if (!selected) throw new Error(`Candidate rank ${requestedRank} was not available.`);
+  const siteType = String(selected.site?.siteType || 'well').toLowerCase();
+  const siteAlias = siteType === 'reservoir' ? 'North Reservoir' : 'North Borehole';
+  const selectedRange = selected.bestWindow.days === 7 ? '7D' : '2D';
 
   if (process.env.SMARTA_CAPTURE_PRIVATE_OUTPUT) {
     fs.writeFileSync(
       process.env.SMARTA_CAPTURE_PRIVATE_OUTPUT,
-      JSON.stringify({ id: String(selected.site._id), siteName: selected.site.siteName }),
+      JSON.stringify({
+        id: String(selected.site._id),
+        siteName: selected.site.siteName,
+        siteType,
+        range: selectedRange,
+      }),
       { mode: 0o600 },
     );
   }
@@ -179,15 +374,15 @@ try {
 
     try {
       const data = await response.json();
-      return route.fulfill({ response, json: scrubObject(data) });
+      return route.fulfill({ response, json: scrubObject(data, siteAlias) });
     } catch {
       return route.fulfill({ response });
     }
   });
 
-  await page.addInitScript(({ privateSiteNames, privateUserNames }) => {
+  await page.addInitScript(({ privateSiteNames, privateUserNames, publicSiteAlias }) => {
     const replacements = [
-      ...privateSiteNames.map((name) => [name, 'North Reservoir']),
+      ...privateSiteNames.map((name) => [name, publicSiteAlias]),
       ...privateUserNames.map((name) => [name, 'Smarta Demo']),
     ];
     const scrub = (root) => {
@@ -205,17 +400,40 @@ try {
       characterData: true,
     });
     document.addEventListener('DOMContentLoaded', () => scrub(document.body));
-  }, { privateSiteNames: siteNames, privateUserNames: userNames });
+  }, {
+    privateSiteNames: siteNames,
+    privateUserNames: userNames,
+    publicSiteAlias: siteAlias,
+  });
 
-  await page.goto('https://www.smartaonline.app/#/chart/telemetrychart', {
+  const telemetryRequestSiteIds = new Set();
+  page.on('request', (requestData) => {
+    const match = requestData.url().match(/\/telemetry\/alarms\/triggers\/([^?]+)/);
+    if (match) telemetryRequestSiteIds.add(match[1]);
+  });
+
+  // Adding a query value forces a new document load. A hash-only navigation
+  // would retain the site that Vuex loaded immediately after login.
+  await page.goto(`https://www.smartaonline.app/?capture=${Date.now()}#/chart/telemetrychart`, {
     waitUntil: 'domcontentloaded',
     timeout: 60_000,
   });
   await page.waitForTimeout(12_000);
 
-  await page.evaluate(({ privateSiteNames, privateUserNames }) => {
+  if (selectedRange === '7D') {
+    const telemetryResponse = page.waitForResponse(
+      (response) => response.url().includes('/telemetry/alarms/triggers/')
+        && response.request().method() === 'GET',
+      { timeout: 30_000 },
+    );
+    await page.getByRole('button', { name: '7D', exact: true }).click();
+    await telemetryResponse;
+    await page.waitForTimeout(5_000);
+  }
+
+  await page.evaluate(({ privateSiteNames, privateUserNames, publicSiteAlias }) => {
     const replacements = [
-      ...privateSiteNames.map((name) => [name, 'North Reservoir']),
+      ...privateSiteNames.map((name) => [name, publicSiteAlias]),
       ...privateUserNames.map((name) => [name, 'Smarta Demo']),
     ];
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
@@ -224,7 +442,11 @@ try {
       for (const [from, to] of replacements) text = text.split(from).join(to);
       walker.currentNode.nodeValue = text;
     }
-  }, { privateSiteNames: siteNames, privateUserNames: userNames });
+  }, {
+    privateSiteNames: siteNames,
+    privateUserNames: userNames,
+    publicSiteAlias: siteAlias,
+  });
   await page.waitForTimeout(500);
 
   const bodyText = await page.locator('body').innerText();
@@ -234,15 +456,19 @@ try {
   if ((await page.locator('canvas').count()) === 0) {
     throw new Error('The telemetry graph did not render.');
   }
+  if (!telemetryRequestSiteIds.has(String(selected.site._id))) {
+    throw new Error('The rendered graph did not use the selected anonymised candidate.');
+  }
 
   await page.screenshot({
-    path: '/tmp/smarta-web-graph-anonymised.png',
+    path: outputPath,
     fullPage: false,
   });
 
   const captureData = {
-    siteName: 'North Reservoir',
-    siteType: 'reservoir',
+    siteName: siteAlias,
+    siteType,
+    range: selectedRange,
     reservoirHeight: finite(selected.site.reservoirHeight),
     reservoirDiameter: finite(selected.site.reservoirDiameter),
     latest: selected.rows[0]
@@ -274,8 +500,28 @@ try {
 
   console.log(JSON.stringify({
     login: 'ok',
-    reservoirsReviewed: reservoirs.length,
-    pointsInSelectedGraph: selected.values.length,
+    recentWaterLevelSitesReviewed: candidates.length,
+    candidatesWithUsableGraphs: scored.length,
+    selectedRank: requestedRank,
+    selectedSiteType: siteType,
+    selectedRange,
+    selectedMovement: {
+      levelSpanMetres: Number(selected.bestWindow.levelSpan.toFixed(2)),
+      visualSpanPercent: Number(selected.bestWindow.visualSpanPercent.toFixed(1)),
+      directionChanges: selected.bestWindow.directionChanges,
+      pumpTransitions: selected.bestWindow.pumpTransitions,
+      points: selected.bestWindow.points,
+    },
+    topCandidates: scored.slice(0, 5).map((candidate, index) => ({
+      rank: index + 1,
+      siteType: String(candidate.site?.siteType || 'well').toLowerCase(),
+      range: candidate.bestWindow.days === 7 ? '7D' : '2D',
+      levelSpanMetres: Number(candidate.bestWindow.levelSpan.toFixed(2)),
+      visualSpanPercent: Number(candidate.bestWindow.visualSpanPercent.toFixed(1)),
+      directionChanges: candidate.bestWindow.directionChanges,
+      pumpTransitions: candidate.bestWindow.pumpTransitions,
+      points: candidate.bestWindow.points,
+    })),
     graphRendered: true,
     privateLabelsRemaining: false,
   }));

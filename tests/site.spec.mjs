@@ -66,6 +66,7 @@ test('homepage mobile navigation and primary content work', async ({ page }) => 
   await expect(page.locator('.proof-strip')).toContainText('11');
   await expect(page.locator('.proof-strip')).toContainText('years in business');
   await expect(page.locator('body')).toContainText('See what changed, and when.');
+  await expect(page.locator('.online-preview-copy')).toContainText('a borehole starting and stopping');
   await expect(page.locator('body')).not.toContainText('100M');
   await expect(page.locator('.online-preview-screen figcaption')).toHaveCount(0);
   await expect(page.locator('#sectors .sector-card')).toHaveCount(4);
@@ -82,7 +83,9 @@ test('homepage mobile navigation and primary content work', async ({ page }) => 
   await expect(page.getByRole('link', { name: /Google Play/ })).toHaveAttribute('href', /play\.google\.com/);
   await expect(page.getByRole('link', { name: /Request a site assessment/ })).toHaveAttribute('href', '#contact');
   await expect(page.locator('img[src="images/app/smarta-mobile-reservoir-anonymised.jpg"]')).toHaveCount(1);
-  await expect(page.locator('img[src="images/platform/smarta-online-telemetry-anonymised.jpg"]')).toHaveCount(1);
+  const telemetryGraph = page.locator('img[src="images/platform/smarta-online-telemetry-anonymised.jpg"]');
+  await expect(telemetryGraph).toHaveCount(1);
+  await expect(telemetryGraph).toHaveAttribute('alt', /borehole showing pump cycles/i);
 });
 
 test('SEO and machine-readable endpoints are present', async ({ page, request }) => {

@@ -50,9 +50,9 @@ Reservoir screenshot edit prompt:
 
 | Repository source | Web derivative | Provenance |
 | --- | --- | --- |
-| `originals/platform-screenshots/smarta-online-telemetry-anonymised.png` | `../images/platform/smarta-online-telemetry-anonymised.jpg` and `.webp` | Current Smarta Online telemetry screen captured on 22 August 2026. API responses and visible text were rewritten in memory before capture so the public asset contains only the aliases `North Reservoir` and `Smarta Demo`; no customer name, user name, site identifier, credential or location was written to the asset. |
+| `originals/platform-screenshots/smarta-online-telemetry-anonymised.png` | `../images/platform/smarta-online-telemetry-anonymised.jpg` and `.webp` | Current Smarta Online telemetry screen captured on 23 August 2026 after a read-only comparison of recently reporting boreholes and reservoirs. The selected two-day borehole view shows repeated pump cycles and changing water telemetry. API responses and visible text were rewritten in memory before capture so the public asset contains only the aliases `North Borehole` and `Smarta Demo`; no customer name, user name, site identifier, credential or location was written to the asset. |
 
-The repeatable capture utility is retained at `../scripts/capture-anonymised-product-screenshots.mjs`. It requires credentials through temporary environment variables, performs a read-only reservoir scan, verifies that private labels are absent and writes only anonymised output. Credentials are never written to the repository.
+The repeatable capture utility is retained at `../scripts/capture-anonymised-product-screenshots.mjs`. It requires credentials through temporary environment variables, performs a read-only scan of recent two-day and seven-day telemetry, rejects isolated device dropouts when ranking candidates, verifies that the rendered graph belongs to the selected site, verifies that private labels are absent and writes only anonymised output. Credentials are never written to the repository.
 
 ## Generated brand-supporting image
 
