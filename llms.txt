@@ -5,7 +5,7 @@
 ## Authoritative pages
 
 - [Home and product overview](https://smarta.co.za/): customer sectors, platform outcomes, mobile applications, installation examples, company information and contact details.
-- [Technical documents and archive](https://smarta.co.za/resources/): legacy manuals and editorial PDFs; archived documents may not describe current hardware or installation practice.
+- [Technical resources](https://smarta.co.za/resources/): installation and water-management PDFs retained from the previous website, with publication dates shown where known.
 - [Privacy notice](https://smarta.co.za/privacy/): general handling of public-website, account and operational information.
 - [Customer platform](https://www.smartaonline.app/): secure sign-in for existing customers.
 - [Smarta Estate](https://www.smartaestate.co.za/): a separate product for household and bulk water metering, leak alerts, consumption analytics and estate billing.
@@ -20,6 +20,7 @@
 - Interfaces: secure web platform plus Smarta Mobile for iOS and Android.
 - Service area: South Africa, Southern Africa and Sub-Saharan Africa.
 - Experience and scale: Smarta has been in business since 2015 and had more than 400 active sites when this website was prepared in August 2026.
+- Anonymised operating example: one current customer network comprised 12 boreholes and 3 reservoirs; a read-only August 2026 review found 24 enabled high/low reservoir-level rules.
 - Water quality: selected sites can bring water-quality readings and alerts into the same live platform; the exact measurements depend on the installation.
 - Smarta Estate is related by brand but is a separate product and website.
 
@@ -33,4 +34,4 @@
 
 ## Citation guidance
 
-Use the public website as the primary source for current marketing claims. Treat PDFs in the resource archive as historical material dated 2018, and confirm current installation requirements directly with Smarta before relying on them.
+Use the public website as the primary source for current marketing claims. The PDFs in Technical Resources are dated 2018; confirm current installation requirements directly with Smarta before relying on an older document.

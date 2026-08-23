@@ -1,6 +1,6 @@
 # Smarta: structured company and product context
 
-Last reviewed: 22 August 2026
+Last reviewed: 23 August 2026
 
 Smarta is a South African system for remotely monitoring and automatically controlling pumps and water infrastructure. Customers use it through a web platform and mobile apps.
 
@@ -43,6 +43,10 @@ Customers use Smarta to reduce unnecessary site visits, find problems earlier, c
 
 Smarta has been in business since 2015. Aggregate operational data reviewed while preparing this website showed more than 400 active Smarta sites in August 2026. The site count is deliberately rounded for public use and is not a promise of a real-time count. The aggregate review was read-only. No customer names, account identities, site identifiers, credentials or exact locations are included in the website repository.
 
+## Anonymised customer example
+
+A read-only review on 23 August 2026 found one current customer network with 15 connected water sites: 12 boreholes and 3 reservoirs. Fourteen sites were reporting at the time of the review. The three reservoirs had 24 enabled water-level rules in total, split between high- and low-level conditions used for automatic control. The public case study deliberately omits the customer name, site names, identifiers and location. It is an operating example, not a claim that every installation has the same configuration.
+
 ## Smarta Estate distinction
 
 Smarta Estate is a separate product at https://www.smartaestate.co.za/. Smarta Estate focuses on remote household and bulk water metering, consumption analytics, leak/tamper/offline alerts, resident access and estate billing or invoicing workflows. Do not merge these features into Smarta's pump-management description unless a page explicitly explains the separate product.
@@ -51,9 +55,9 @@ Smarta Estate is a separate product at https://www.smartaestate.co.za/. Smarta E
 
 Smarta is based in Gauteng, South Africa and supports work across Southern and Sub-Saharan Africa. General enquiries: info@smarta.co.za. Sales: pedri@smarta.co.za. Office: +27 10 110 1000. Mobile: +27 76 432 3013.
 
-## Historical documents
+## Technical resources
 
-The resource archive contains an installation manual and four articles published in 2018. They are retained for continuity and historical reference. They may not describe current equipment or installation practice. Anyone planning field work should request the current approved document from Smarta.
+The resources page contains an installation manual and four articles published in 2018. Publication dates are shown where known. Anyone planning current field work should confirm the applicable approved document with Smarta.
 
 ## Preferred terminology
 
@@ -63,4 +67,4 @@ The resource archive contains an installation manual and four articles published
 - Describe automated control plainly: rules can start or stop pumps from water-level, pump-pressure and schedule conditions.
 - Use “authorised remote control” only where a compatible installation is configured for control.
 - Keep Smarta Estate clearly identified as a separate product for household and bulk metering, resident access and billing workflows.
-- Describe the homepage panorama as conceptual. Product screenshots show current interfaces; marketing status-card values are illustrative.
+- Sector imagery on the homepage is real Smarta field photography. Product screenshots show current interfaces; marketing status-card values are illustrative.

@@ -51,18 +51,24 @@ test('homepage mobile navigation and primary content work', async ({ page }) => 
 
   await expect(page.locator('.mobile-header-cta')).toBeVisible();
   await expect(page.locator('.mobile-header-cta')).toHaveAttribute('href', '#contact');
+  await expect(page.locator('.mobile-header-cta')).toHaveText('Request a site assessment');
   const toggle = page.locator('[data-menu-toggle]');
   await expect(toggle).toHaveAccessibleName('Open navigation');
   await toggle.click();
   await expect(toggle).toHaveAttribute('aria-expanded', 'true');
   await expect(toggle).toHaveAccessibleName('Close navigation');
   await expect(page.locator('#mobile-menu')).toBeVisible();
-  await page.locator('#mobile-menu').getByRole('link', { name: 'Platform' }).click();
+  await page.locator('#mobile-menu').getByRole('link', { name: 'How Smarta works' }).click();
   await expect(page.locator('#mobile-menu')).toBeHidden();
   await expect(page).toHaveURL(/#platform$/);
 
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Your water system');
   await expect(page.locator('body')).toContainText('Automate pump control');
+  await expect(page.locator('.system-story-screen img')).toHaveCount(1);
+  await expect(page.locator('.system-path')).toContainText('Pumps & sensors');
+  await expect(page.locator('.system-path')).toContainText('Automatic control');
+  await expect(page.locator('.outcomes-band li')).toHaveCount(5);
+  await expect(page.locator('.outcomes-band')).toContainText('Automatic reservoir filling');
   await expect(page.locator('.proof-strip')).toContainText('11');
   await expect(page.locator('.proof-strip')).toContainText('years in business');
   await expect(page.locator('body')).toContainText('See what changed, and when.');
@@ -70,6 +76,8 @@ test('homepage mobile navigation and primary content work', async ({ page }) => 
   await expect(page.locator('body')).not.toContainText('100M');
   await expect(page.locator('.online-preview-screen figcaption')).toHaveCount(0);
   await expect(page.locator('#sectors .sector-card')).toHaveCount(4);
+  await expect(page.locator('#sectors .sector-card-photo img')).toHaveCount(4);
+  await expect(page.locator('#sectors .sector-panorama')).toHaveCount(0);
   await expect(page.locator('#sectors .sector-card-top > span')).toHaveCount(0);
   await expect(page.locator('.capability-card .card-number')).toHaveCount(0);
   await expect(page.locator('#sectors')).toContainText('Estates');
@@ -77,13 +85,19 @@ test('homepage mobile navigation and primary content work', async ({ page }) => 
   await expect(page.locator('#sectors')).toContainText('Farms');
   await expect(page.locator('#sectors')).toContainText('Municipalities');
   await expect(page.locator('#installations .gallery-card')).toHaveCount(12);
+  await expect(page.locator('#case-study')).toContainText('12 boreholes. 3 reservoirs. One water network.');
+  await expect(page.locator('#case-study .case-study-stats > div')).toHaveCount(3);
+  await expect(page.locator('#case-study')).toContainText('24');
   await expect(page.getByRole('link', { name: /See Smarta Estate/ })).toHaveAttribute('href', 'https://www.smartaestate.co.za/');
   await expect(page.locator('body')).not.toContainText('valve automation is not included');
   await expect(page.getByRole('link', { name: /Apple App Store/ })).toHaveAttribute('href', /apps\.apple\.com/);
   await expect(page.getByRole('link', { name: /Google Play/ })).toHaveAttribute('href', /play\.google\.com/);
-  await expect(page.getByRole('link', { name: /Request a site assessment/ })).toHaveAttribute('href', '#contact');
+  const assessmentLinks = page.getByRole('link', { name: /Request a site assessment/ });
+  await expect(assessmentLinks).toHaveCount(4);
+  await expect.poll(() => assessmentLinks.evaluateAll((links) => links.every((link) => link.getAttribute('href') === '#contact'))).toBe(true);
   await expect(page.locator('img[src="images/app/smarta-mobile-reservoir-anonymised.jpg"]')).toHaveCount(1);
-  const telemetryGraph = page.locator('img[src="images/platform/smarta-online-telemetry-anonymised.jpg"]');
+  await expect(page.locator('footer')).not.toContainText('LLM information');
+  const telemetryGraph = page.locator('.online-preview-screen img[src="images/platform/smarta-online-telemetry-anonymised.jpg"]');
   await expect(telemetryGraph).toHaveCount(1);
   await expect(telemetryGraph).toHaveAttribute('alt', /borehole showing pump cycles/i);
 });

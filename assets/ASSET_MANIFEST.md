@@ -1,6 +1,6 @@
 # Asset manifest and provenance
 
-Last reviewed: 22 August 2026
+Last reviewed: 23 August 2026
 
 This repository keeps every picture and document used to produce the website. Original files are preserved separately from compressed or cropped web derivatives.
 
@@ -14,21 +14,21 @@ This repository keeps every picture and document used to produce the website. Or
 
 ## Installation photographs
 
-The twelve installation originals below were supplied in Michael's Downloads folder as the WhatsApp batches dated 20 May, 11 June and 17 June 2026. They were selected after a visual contact-sheet review. Unrelated personal photographs and documents in Downloads were intentionally excluded. Web derivatives are colour-neutral, compressed JPEGs; they are not AI-generated and do not add or remove field equipment.
+The twelve installation originals below were supplied in Michael's Downloads folder as the WhatsApp batches dated 20 May, 11 June and 17 June 2026. They were selected after a visual contact-sheet review. Unrelated personal photographs and documents in Downloads were intentionally excluded. Web derivatives are colour-neutral, compressed JPEGs and responsive WebPs; they are not AI-generated and do not add or remove field equipment.
 
 | Original retained in `originals/installations/` | Web derivative in `../images/installations/` |
 | --- | --- |
 | `controller-panel-internal-2026-05-20.jpeg` | `controller-panel-internal-2026-05-20.jpg` |
 | `solar-borehole-installation-2026-06-11.jpeg` | `solar-borehole-installation-2026-06-11.jpg`, `solar-borehole-installation-2026-06-11.webp`, `solar-borehole-installation-2026-06-11-960.webp` |
-| `flow-meter-pump-station-2026-06-11.jpeg` | `flow-meter-pump-station-2026-06-11.jpg` |
+| `flow-meter-pump-station-2026-06-11.jpeg` | `flow-meter-pump-station-2026-06-11.jpg`, `flow-meter-pump-station-2026-06-11-900.webp` |
 | `field-controller-internal-2026-06-11.jpeg` | `field-controller-internal-2026-06-11.jpg` |
 | `vfd-control-panel-2026-06-17.jpeg` | `vfd-control-panel-2026-06-17.jpg` |
 | `dual-smarta-controller-panel-a-2026-06-17.jpeg` | `dual-smarta-controller-panel-a-2026-06-17.jpg` |
 | `vfd-control-panel-alt-2026-06-17.jpeg` | `vfd-control-panel-alt-2026-06-17.jpg` |
-| `plc-control-panel-2026-06-17.jpeg` | `plc-control-panel-2026-06-17.jpg` |
+| `plc-control-panel-2026-06-17.jpeg` | `plc-control-panel-2026-06-17.jpg`, `plc-control-panel-2026-06-17-720.webp` |
 | `dual-smarta-controller-panel-b-2026-06-17.jpeg` | `dual-smarta-controller-panel-b-2026-06-17.jpg` |
 | `pump-room-pipework-2026-06-17.jpeg` | `pump-room-pipework-2026-06-17.jpg` |
-| `pump-room-control-cabinet-2026-06-17.jpeg` | `pump-room-control-cabinet-2026-06-17.jpg` |
+| `pump-room-control-cabinet-2026-06-17.jpeg` | `pump-room-control-cabinet-2026-06-17.jpg`, `pump-room-control-cabinet-2026-06-17-900.webp` |
 | `solar-pump-room-2026-06-17.jpeg` | `solar-pump-room-2026-06-17.jpg` |
 
 ## Mobile application images
@@ -82,7 +82,7 @@ Sector panorama generation prompt:
 > Constraints: no text, no letters, no numbers, no logos, no brand marks, no UI, no map pins, no data overlays, no people in close-up, no fantasy megastructures, no watermark. Do not imply this is a real Smarta installation. Maintain plausible Southern African geography and infrastructure.
 > Avoid: generic smart-city neon graphics, circuit-board motifs, sci-fi cities, glossy stock-photo look, obvious four-panel collage, exaggerated blue water, American suburban architecture.
 
-The panorama creates broad visual context for estates, mines, farms and municipalities and is not a customer-site photograph. The installation gallery remains the source of real field photography.
+The panorama is retained in the repository for provenance, but it was removed from the homepage on 23 August 2026. The sector section now uses four real Smarta field photographs.
 
 ## Social-sharing card
 
@@ -92,7 +92,7 @@ The panorama creates broad visual context for estates, mines, farms and municipa
 
 The JPEG is referenced by the site's Open Graph and Twitter metadata. The lossless PNG and complete HTML/CSS source are retained so the card can be reproduced or updated without flattening away its provenance.
 
-## Archived documents
+## Technical documents
 
 All five PDFs in `../documents/` were downloaded from the existing public Smarta website and are committed unchanged:
 
@@ -104,4 +104,4 @@ All five PDFs in `../documents/` were downloaded from the existing public Smarta
 | `affordable-pump-control-2018.pdf` | One-page article on affordable remote pump control. |
 | `smarta-offers-affordable-pump-control-2018.pdf` | Two-page publication about the original Smarta offering. |
 
-These documents are presented on the website as a historical archive. They may not represent current hardware, firmware, wiring or field practice.
+The resources page shows their publication dates where known. Anyone using an older document for current field work should first confirm the applicable approved revision with Smarta.
