@@ -4571,3 +4571,95 @@ a {
     grid-auto-rows: 205px;
   }
 }
+
+/* Typography refinement: editorial headlines, practical interface text. */
+
+:root {
+  --font-display: Georgia, "Times New Roman", serif;
+  --font-body: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.hero h1,
+.sector-intro h2,
+.section-heading h2,
+.field-copy h2,
+.app-copy h2,
+.about-grid h2,
+.faq-intro h2,
+.contact-grid h2,
+.mid-page-cta h2,
+.not-found h1,
+.subpage-hero h1,
+.resource-heading h2,
+.subpage-cta h2,
+.online-preview-copy h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+}
+
+.hero h1 {
+  font-size: clamp(4.5rem, 6.5vw, 6.65rem);
+  line-height: 0.94;
+}
+
+.section-heading h2,
+.field-copy h2,
+.app-copy h2,
+.about-grid h2,
+.faq-intro h2,
+.contact-grid h2 {
+  font-size: clamp(3rem, 4.5vw, 4.7rem);
+  line-height: 1;
+}
+
+.sector-intro h2 {
+  font-size: clamp(3.5rem, 5.45vw, 6rem);
+  line-height: 0.99;
+}
+
+.mid-page-cta h2 {
+  line-height: 1;
+}
+
+.sector-card h3,
+.capability-card h3,
+.solution-card h3,
+.process-grid h3,
+.about-values strong,
+.gallery-card figcaption strong,
+.service-list strong,
+.contact-primary,
+.resource-card h3,
+.resource-help h3,
+.legal-content h2 {
+  font-family: var(--font-body);
+}
+
+.sector-card h3,
+.capability-card h3,
+.solution-card h3,
+.process-grid h3,
+.about-values strong,
+.gallery-card figcaption strong,
+.service-list strong {
+  letter-spacing: -0.025em;
+}
+
+@media (max-width: 700px) {
+  .hero h1 {
+    font-size: clamp(3.55rem, 15.5vw, 4.65rem);
+    line-height: 0.95;
+  }
+
+  .sector-intro h2,
+  .section-heading h2,
+  .field-copy h2,
+  .app-copy h2,
+  .about-grid h2,
+  .faq-intro h2,
+  .contact-grid h2 {
+    font-size: clamp(2.8rem, 12.5vw, 3.8rem);
+    line-height: 0.99;
+  }
+}

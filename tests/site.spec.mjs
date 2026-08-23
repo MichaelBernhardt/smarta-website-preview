@@ -24,6 +24,11 @@ for (const route of publicPages) {
     await expect(page.locator('h1')).toBeVisible();
     expect(await page.title()).not.toBe('');
 
+    if (route === '/resources/') {
+      await expect(page.locator('body')).not.toContainText('Archive notice');
+      await expect(page.locator('body')).not.toContainText('These files were published in 2018');
+    }
+
     const imageSources = await page.locator('img').evaluateAll((images) => images.map((image) => image.currentSrc || image.src));
     for (const source of imageSources) {
       const imageResponse = await request.get(source);
