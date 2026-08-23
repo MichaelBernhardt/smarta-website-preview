@@ -15,6 +15,7 @@ A fast, static marketing site for [Smarta](https://smarta.co.za/), rebuilt aroun
 - Privacy notice and branded 404 page
 - Automated browser, accessibility, image and internal-link checks
 - GitHub Pages deployment workflow
+- A dated [competitor visual audit](research/competitor-visual-audit.md) recording the official sites and design decisions used for the August 2026 refinement
 
 ## Run locally
 
@@ -35,7 +36,7 @@ npm test
 
 The public site-count statement is rounded from aggregate, read-only reviews of production records on 21 and 22 August 2026: over 400 active sites. Sector naming signals in the active-site data informed the emphasis on estates, mines, farms and municipal/community systems. The “11 years in business” statement reflects Smarta operating since 2015, as confirmed by the owner. The product captures include a small amount of current, anonymised telemetry, but no customer names, account identities, exact locations, site identifiers or production credentials. Private labels were replaced before the public assets were saved.
 
-Homepage copy stays at customer-decision level and avoids implementation caveats. Capabilities still depend on the site and its configuration, so the site assessment remains the starting point. Values in the homepage status card are illustrative and labelled as such.
+Homepage copy stays at customer-decision level and avoids implementation caveats. Capabilities still depend on the site and its configuration, so the site assessment remains the starting point.
 
 The privacy page is a practical website/platform overview, not a substitute for reviewing customer contracts, processor arrangements and the final production analytics stack before launch.
 

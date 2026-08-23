@@ -56,7 +56,7 @@ test('homepage mobile navigation and primary content work', async ({ page }) => 
   await expect(page.locator('#mobile-menu')).toBeHidden();
   await expect(page).toHaveURL(/#platform$/);
 
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Know what your water system is doing');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Your water system');
   await expect(page.locator('body')).toContainText('Automate pump control');
   await expect(page.locator('.proof-strip')).toContainText('11');
   await expect(page.locator('.proof-strip')).toContainText('years in business');
@@ -75,7 +75,7 @@ test('homepage mobile navigation and primary content work', async ({ page }) => 
   await expect(page.locator('body')).not.toContainText('valve automation is not included');
   await expect(page.getByRole('link', { name: /Apple App Store/ })).toHaveAttribute('href', /apps\.apple\.com/);
   await expect(page.getByRole('link', { name: /Google Play/ })).toHaveAttribute('href', /play\.google\.com/);
-  await expect(page.getByRole('link', { name: /Request a site assessment/ }).nth(1)).toHaveAttribute('href', '#contact');
+  await expect(page.getByRole('link', { name: /Request a site assessment/ })).toHaveAttribute('href', '#contact');
   await expect(page.locator('img[src="images/app/smarta-mobile-reservoir-anonymised.jpg"]')).toHaveCount(1);
   await expect(page.locator('img[src="images/platform/smarta-online-telemetry-anonymised.jpg"]')).toHaveCount(1);
 });

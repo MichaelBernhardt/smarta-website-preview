@@ -19,7 +19,7 @@ The twelve installation originals below were supplied in Michael's Downloads fol
 | Original retained in `originals/installations/` | Web derivative in `../images/installations/` |
 | --- | --- |
 | `controller-panel-internal-2026-05-20.jpeg` | `controller-panel-internal-2026-05-20.jpg` |
-| `solar-borehole-installation-2026-06-11.jpeg` | `solar-borehole-installation-2026-06-11.jpg` |
+| `solar-borehole-installation-2026-06-11.jpeg` | `solar-borehole-installation-2026-06-11.jpg`, `solar-borehole-installation-2026-06-11.webp`, `solar-borehole-installation-2026-06-11-960.webp` |
 | `flow-meter-pump-station-2026-06-11.jpeg` | `flow-meter-pump-station-2026-06-11.jpg` |
 | `field-controller-internal-2026-06-11.jpeg` | `field-controller-internal-2026-06-11.jpg` |
 | `vfd-control-panel-2026-06-17.jpeg` | `vfd-control-panel-2026-06-17.jpg` |
@@ -88,7 +88,7 @@ The panorama creates broad visual context for estates, mines, farms and municipa
 
 | Source | Rendered assets | Method |
 | --- | --- | --- |
-| `social-card-source.html` | `../images/social/smarta-og.png` and `../images/social/smarta-og.jpg` | Deterministic 1200 × 630 browser render combining the official Smarta logo, the generated abstract backdrop, real `solar-pump-room-2026-06-17` installation photograph and HTML text. |
+| `social-card-source.html` | `../images/social/smarta-og.png` and `../images/social/smarta-og.jpg` | Deterministic 1200 × 630 browser render combining the official Smarta logo, the real `solar-borehole-installation-2026-06-11` photograph and HTML text. |
 
 The JPEG is referenced by the site's Open Graph and Twitter metadata. The lossless PNG and complete HTML/CSS source are retained so the card can be reproduced or updated without flattening away its provenance.
 

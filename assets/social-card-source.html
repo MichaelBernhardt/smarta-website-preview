@@ -12,37 +12,20 @@
         position: relative;
         color: #fff;
         font-family: "Avenir Next", Avenir, "Segoe UI", Arial, sans-serif;
-        background: #042f49 url("../images/brand/water-network-hero.jpg") center / cover;
+        background: #042f49 url("../images/installations/solar-borehole-installation-2026-06-11.jpg") 58% center / cover;
       }
       body::before {
         position: absolute;
         inset: 0;
         content: "";
-        background: linear-gradient(90deg, rgba(3, 31, 49, .99) 0%, rgba(3, 39, 60, .95) 47%, rgba(3, 39, 60, .45) 72%, rgba(3, 39, 60, .2));
+        background:
+          linear-gradient(90deg, rgba(3, 31, 49, .99) 0%, rgba(3, 31, 49, .93) 45%, rgba(3, 31, 49, .5) 70%, rgba(3, 31, 49, .12)),
+          linear-gradient(0deg, rgba(3, 31, 49, .45), transparent 52%);
       }
-      .photo {
-        position: absolute;
-        top: 55px;
-        right: -40px;
-        width: 510px;
-        height: 520px;
-        overflow: hidden;
-        border: 1px solid rgba(255,255,255,.25);
-        border-radius: 32px;
-        box-shadow: 0 35px 90px rgba(0,0,0,.4);
-        transform: rotate(2deg);
-      }
-      .photo::after {
-        position: absolute;
-        inset: 0;
-        content: "";
-        background: linear-gradient(90deg, rgba(4,44,67,.28), transparent 35%);
-      }
-      .photo img { width: 100%; height: 100%; object-fit: cover; }
       .content {
         position: relative;
         z-index: 2;
-        width: 770px;
+        width: 720px;
         padding: 54px 0 0 64px;
       }
       .logo {
@@ -53,24 +36,20 @@
         filter: brightness(0) invert(1);
       }
       .eyebrow {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin: 42px 0 19px;
+        margin: 42px 0 20px;
         color: #7ce2eb;
-        font-size: 14px;
+        font-size: 13px;
         font-weight: 800;
         letter-spacing: .18em;
         text-transform: uppercase;
       }
-      .eyebrow::before { width: 28px; height: 2px; content: ""; background: #54d3df; }
       h1 {
-        max-width: 700px;
+        max-width: 640px;
         margin: 0;
-        font-size: 65px;
+        font-size: 72px;
         font-weight: 750;
-        letter-spacing: -.055em;
-        line-height: .98;
+        letter-spacing: -.065em;
+        line-height: .93;
       }
       h1 span { color: #54d3df; }
       p {
@@ -80,32 +59,27 @@
         font-size: 19px;
         line-height: 1.55;
       }
-      .chip {
+      .proof {
         position: absolute;
-        z-index: 3;
-        right: 35px;
-        bottom: 35px;
-        display: flex;
-        align-items: center;
-        gap: 9px;
-        padding: 11px 16px;
-        border: 1px solid rgba(255,255,255,.2);
-        border-radius: 999px;
-        background: rgba(3,31,49,.82);
-        font-size: 13px;
+        z-index: 2;
+        right: 64px;
+        bottom: 43px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(255,255,255,.55);
+        color: rgba(255,255,255,.82);
+        font-size: 12px;
         font-weight: 700;
+        letter-spacing: .04em;
       }
-      .chip::before { width: 8px; height: 8px; content: ""; border-radius: 50%; background: #52dfa8; box-shadow: 0 0 0 5px rgba(82,223,168,.13); }
     </style>
   </head>
   <body>
-    <div class="photo"><img src="../images/installations/solar-pump-room-2026-06-17.jpg" alt=""></div>
     <main class="content">
       <img class="logo" src="../images/brand/smarta-official-logo-260.png" alt="Smarta">
-      <div class="eyebrow">Estates · Mines · Farms · Municipalities</div>
-      <h1>Know what your water system is doing. <span>From anywhere.</span></h1>
-      <p>Monitor and automatically control pumps, boreholes and reservoirs.</p>
+      <div class="eyebrow">Remote monitoring &amp; automated pump control</div>
+      <h1>Your water system, <span>under control.</span></h1>
+      <p>For estates, mines, farms and municipalities.</p>
     </main>
-    <div class="chip">Web · iOS · Android</div>
+    <div class="proof">11 years · 400+ active sites · South African developed</div>
   </body>
 </html>
