@@ -102,6 +102,69 @@ test('homepage mobile navigation and primary content work', async ({ page }) => 
   await expect(telemetryGraph).toHaveAttribute('alt', /borehole showing pump cycles/i);
 });
 
+test('homepage mobile layout brings real product proof forward', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 844 });
+  await page.goto('/');
+
+  const heroHeight = await page.locator('.hero').evaluate((element) => element.getBoundingClientRect().height);
+  expect(heroHeight).toBeLessThanOrEqual(844);
+
+  const layout = await page.evaluate(() => {
+    const style = (selector) => getComputedStyle(document.querySelector(selector));
+    const columns = (selector) => style(selector).gridTemplateColumns.split(' ').filter(Boolean).length;
+    const storyPicture = document.querySelector('.system-story-screen picture').getBoundingClientRect();
+    const storyImage = document.querySelector('.system-story-screen img');
+
+    return {
+      storyAreas: style('.system-story-grid').gridTemplateAreas,
+      appAreas: style('.app-grid').gridTemplateAreas,
+      outcomeColumns: columns('.outcomes-band ul'),
+      proofColumns: columns('.proof-grid'),
+      storyFrameRatio: storyPicture.width / storyPicture.height,
+      storyObjectFit: getComputedStyle(storyImage).objectFit,
+      fieldCopyOrder: style('.field-copy').order,
+      fieldPhotoOrder: style('.field-photo').order,
+      openFaqItems: document.querySelectorAll('.faq-list details[open]').length,
+    };
+  });
+
+  expect(layout.storyAreas).toContain('"story-heading" "story-screen" "story-details"');
+  expect(layout.appAreas).toContain('"app-intro" "app-visual" "app-actions"');
+  expect(layout.outcomeColumns).toBe(2);
+  expect(layout.proofColumns).toBe(3);
+  expect(layout.storyFrameRatio).toBeGreaterThan(1.2);
+  expect(layout.storyFrameRatio).toBeLessThan(1.35);
+  expect(layout.storyObjectFit).toBe('cover');
+  expect(layout.fieldCopyOrder).toBe('1');
+  expect(layout.fieldPhotoOrder).toBe('2');
+  expect(layout.openFaqItems).toBe(0);
+
+  await page.locator('[data-menu-toggle]').click();
+  const menuSurface = await page.locator('#mobile-menu').evaluate((element) => ({
+    backgroundColor: getComputedStyle(element).backgroundColor,
+    height: element.getBoundingClientRect().height,
+  }));
+  expect(menuSurface.backgroundColor).toBe('rgb(255, 255, 255)');
+  expect(menuSurface.height).toBeGreaterThan(700);
+});
+
+test('internal pages use restrained mobile editorial surfaces', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 844 });
+
+  await page.goto('/resources/');
+  const resourceStyles = await page.evaluate(() => ({
+    textureDisplay: getComputedStyle(document.querySelector('.subpage-texture')).display,
+    featuredRadius: getComputedStyle(document.querySelector('.resource-card-featured')).borderRadius,
+    featuredShadow: getComputedStyle(document.querySelector('.resource-card-featured')).boxShadow,
+  }));
+  expect(resourceStyles.textureDisplay).toBe('none');
+  expect(resourceStyles.featuredRadius).toBe('0px');
+  expect(resourceStyles.featuredShadow).toBe('none');
+
+  await page.goto('/privacy/');
+  await expect(page.locator('.legal-summary')).toHaveCSS('border-radius', '0px');
+});
+
 test('SEO and machine-readable endpoints are present', async ({ page, request }) => {
   await page.goto('/');
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://smarta.co.za/');

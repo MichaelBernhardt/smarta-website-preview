@@ -185,7 +185,6 @@
         <a href="#about">About</a>
         <a href="resources/">Resources</a>
         <a href="https://www.smartaonline.app/" target="_blank" rel="noopener noreferrer">Client login ↗</a>
-        <a class="button button-primary" href="#contact">Request a site assessment</a>
       </nav>
     </header>
 
@@ -214,9 +213,12 @@
 
       <section class="system-story" aria-labelledby="system-story-title">
         <div class="container system-story-grid" data-reveal>
-          <div class="system-story-copy">
+          <div class="system-story-heading">
             <p class="eyebrow">At the pump and on your screen</p>
             <h2 id="system-story-title">The hardware, software and control work as one system.</h2>
+          </div>
+
+          <div class="system-story-details">
             <p>Smarta connects the equipment on site to Smarta Online and the mobile app. Your team sees what is happening, receives alarms and can let level, pressure or schedule rules operate the pumps automatically.</p>
             <div class="system-path" role="group" aria-label="How data and control move through Smarta">
               <span>Pumps &amp; sensors</span><i aria-hidden="true">→</i>
@@ -354,14 +356,14 @@
 
           <div class="capability-grid outcome-grid">
             <article class="capability-card" data-reveal>
-              <h3>Check your sites</h3>
-              <p>View pump status, water levels, flow, pressure and water-quality readings for one site or a larger network.</p>
-              <span class="card-detail">Includes web and mobile access</span>
-            </article>
-            <article class="capability-card" data-reveal>
               <h3>Automate pump control</h3>
               <p>Start or stop pumps when a reservoir reaches a chosen level, when pressure changes or at scheduled times.</p>
               <span class="card-detail">Level, pressure and schedule rules</span>
+            </article>
+            <article class="capability-card" data-reveal>
+              <h3>Check your sites</h3>
+              <p>View pump status, water levels, flow, pressure and water-quality readings for one site or a larger network.</p>
+              <span class="card-detail">Includes web and mobile access</span>
             </article>
             <article class="capability-card" data-reveal>
               <h3>Receive alerts and reports</h3>
@@ -431,10 +433,22 @@
 
       <section class="section app-section" id="mobile-app">
         <div class="container app-grid">
-          <div class="app-copy" data-reveal>
+          <div class="app-intro" data-reveal>
             <p class="eyebrow eyebrow-light">Smarta Mobile</p>
             <h2>Check your sites from your phone.</h2>
             <p>Open a site to see its current status, graphs and alarms. Authorised users can also operate compatible pumps and update schedules.</p>
+          </div>
+
+          <div class="app-visual" data-reveal>
+            <figure class="app-device app-device-sites">
+              <img src="images/app/smarta-mobile-sites-ios.jpg" alt="Smarta Mobile site list showing the demo pump, water level, flow, pressure and alarm count" width="603" height="1311" loading="lazy">
+            </figure>
+            <figure class="app-device app-device-live">
+              <img src="images/app/smarta-mobile-reservoir-anonymised.jpg" alt="Smarta Mobile reservoir screen showing storage level, outlet flow, live electrical readings and pump controls" width="603" height="1306" loading="lazy">
+            </figure>
+          </div>
+
+          <div class="app-actions" data-reveal>
             <ul class="app-points">
               <li>Live site status</li>
               <li>Graphs and history</li>
@@ -452,15 +466,6 @@
               </a>
             </div>
             <a class="app-login" href="https://www.smartaonline.app/" target="_blank" rel="noopener noreferrer">Open Smarta on the web <span aria-hidden="true">↗</span></a>
-          </div>
-
-          <div class="app-visual" data-reveal>
-            <figure class="app-device app-device-sites">
-              <img src="images/app/smarta-mobile-sites-ios.jpg" alt="Smarta Mobile site list showing the demo pump, water level, flow, pressure and alarm count" width="603" height="1311" loading="lazy">
-            </figure>
-            <figure class="app-device app-device-live">
-              <img src="images/app/smarta-mobile-reservoir-anonymised.jpg" alt="Smarta Mobile reservoir screen showing storage level, outlet flow, live electrical readings and pump controls" width="603" height="1306" loading="lazy">
-            </figure>
           </div>
         </div>
       </section>
@@ -563,7 +568,7 @@
             <a class="arrow-link" href="mailto:info@smarta.co.za?subject=Smarta%20site%20question">Ask about your site <span aria-hidden="true">→</span></a>
           </div>
           <div class="faq-list" data-reveal>
-            <details open>
+            <details>
               <summary>Who uses Smarta?<span aria-hidden="true">+</span></summary>
               <p>Smarta is used by residential estates, mines, farms, municipalities and other organisations that operate pumps and water systems.</p>
             </details>
