@@ -12,11 +12,16 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.2",
-    "html-validate": "^9.7.1",
-    "playwright": "^1.55.0",
+    "html-validate": "^11.16.2",
+    "playwright": "^1.64.0",
     "serve": "^14.2.4"
   },
   "engines": {
     "node": ">=20"
+  },
+  "overrides": {
+    "serve": {
+      "compression": "^1.8.2"
+    }
   }
 }
